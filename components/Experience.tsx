@@ -7,7 +7,7 @@ import { useRef } from "react";
 const experiences = [
   {
     company: "TURNS (Pay Range)",
-    role: "Software Development Engineer - 1",
+    role: "Software Development Engineer (SDE 1)",
     period: "October 2024 - Present",
     location: "Noida, India",
     description: "Leading end-to-end UI/UX transformations and building scalable full-stack features for a growing platform.",

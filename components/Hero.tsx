@@ -48,7 +48,7 @@ export default function Hero() {
           variants={itemVariants}
           className="text-3xl md:text-4xl text-luxury-gold mb-8 font-semibold"
         >
-          Software Development Engineer - 1
+          Software Development Engineer (SDE 1)
         </motion.div>
 
         <motion.p
