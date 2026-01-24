@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ChevronDown, Github, Linkedin, Mail } from "lucide-react";
+import { ChevronDown, Linkedin, Mail } from "lucide-react";
 
 export default function Hero() {
   const containerVariants = {
@@ -65,8 +65,7 @@ export default function Hero() {
           className="flex items-center justify-center gap-6 mb-16"
         >
           {[
-            { icon: Github, href: "https://github.com/aadityamohan", label: "GitHub" },
-            { icon: Linkedin, href: "https://linkedin.com/in/aaditya-mohan", label: "LinkedIn" },
+            { icon: Linkedin, href: "https://www.linkedin.com/in/aadityaamohan/", label: "LinkedIn" },
             { icon: Mail, href: "mailto:mohanaaditya@gmail.com", label: "Email" },
           ].map((social) => (
             <motion.a

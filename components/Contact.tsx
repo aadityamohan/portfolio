@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { Mail, MapPin, Phone, Github, Linkedin } from "lucide-react";
+import { Mail, MapPin, Phone, Linkedin } from "lucide-react";
 import { useRef } from "react";
 
 const contactInfo = [
@@ -11,8 +11,7 @@ const contactInfo = [
 ];
 
 const socialLinks = [
-  { icon: Github, label: "GitHub", href: "https://github.com/aadityamohan" },
-  { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com/in/aaditya-mohan" },
+  { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/aadityaamohan/" },
 ];
 
 export default function Contact() {

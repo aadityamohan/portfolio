@@ -1,7 +1,6 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { ExternalLink, Github } from "lucide-react";
 import { useRef, useState } from "react";
 
 const projects = [
@@ -16,8 +15,6 @@ const projects = [
     ],
     tech: ["Node.js", "React", "Baileys API", "Express.js", "MongoDB", "JWT"],
     gradient: "from-green-500 to-emerald-500",
-    github: "https://github.com/aadityamohan/whatsapp-bulk-messaging",
-    live: "#",
   },
   {
     title: "E-Commerce Store",
@@ -30,8 +27,6 @@ const projects = [
     ],
     tech: ["React", "Next.js", "Sanity CMS", "Stripe", "Auth0", "MongoDB"],
     gradient: "from-purple-500 to-pink-500",
-    github: "https://github.com/aadityamohan/ecommerce-store",
-    live: "https://ecommerce-store-demo.vercel.app",
   },
 ];
 
@@ -107,34 +102,6 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
           ))}
         </motion.div>
 
-        <motion.div
-          animate={{ x: isHovered ? 10 : 0 }}
-          transition={{ delay: 0.15 }}
-          className="flex gap-4"
-        >
-          <motion.a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            className="flex items-center gap-2 px-4 py-2 glass-effect rounded-full text-luxury-gold hover:bg-luxury-gold/10 transition-all"
-          >
-            <Github size={20} />
-            <span>Code</span>
-          </motion.a>
-          <motion.a
-            href={project.live}
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            className="flex items-center gap-2 px-4 py-2 bg-luxury-gold text-luxury-dark rounded-full hover:bg-luxury-darkGold transition-all"
-          >
-            <ExternalLink size={20} />
-            <span>Live</span>
-          </motion.a>
-        </motion.div>
       </div>
 
       <motion.div
