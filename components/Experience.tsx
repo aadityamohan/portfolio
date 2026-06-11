@@ -1,186 +1,89 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { Briefcase, Calendar, MapPin } from "lucide-react";
-import { useRef } from "react";
+import { motion } from "framer-motion";
+import SectionHeader from "./SectionHeader";
 
 const experiences = [
   {
-    company: "TURNS (Pay Range)",
-    role: "Software Development Engineer (SDE 1)",
-    period: "October 2024 - Present",
-    location: "Noida, India",
-    description: "Leading end-to-end UI/UX transformations and building scalable full-stack features for a growing platform.",
+    hash: "f3a92c1",
+    company: "PayRange",
+    role: "Software Engineer (Frontend) · SDE-1",
+    period: "Mar 2025 – Present",
+    location: "Greater Noida, India",
     achievements: [
-      "Led comprehensive UI/UX revamp across key modules, introducing custom theme support and user preferences, resulting in increased user retention",
-      "Built and integrated RESTful APIs for real-time user notifications, hold & resume order system, and CCI card payment integration",
-      "Designed and deployed scalable components including dynamic subscription modals and advanced search functionality",
-      "Drove performance optimizations resulting in faster load times and reduced user drop-off during critical interactions",
+      "Built a production-grade POS back-office web app in React 18 + TypeScript + Vite — HMAC-signed/JWT-authenticated APIs, granular permissions, multi-scope settings, and full i18n (EN/ES/FR) on a themeable shadcn/ui + Tailwind design system",
+      "Engineered the architecture around TanStack Query, Zustand, and Zod-validated forms using a feature-modular, container/presentational pattern, with automated testing (Vitest/RTL)",
+      "Enforced git hygiene via Husky, ESLint, and Conventional Commits",
+      "Developed and integrated RESTful APIs with backend teams to ship real-time notifications, Hold & Resume Order workflows, and CCI card payment integration",
+      "Continuously improved performance and scalability, reducing load times and user drop-off during critical checkout and order-processing flows",
     ],
-    tech: ["React", "Node.js", "Express.js", "MongoDB", "REST API", "UI/UX Design"],
-    gradient: "from-blue-500 to-cyan-500",
+    tech: ["React 18", "TypeScript", "Vite", "TanStack Query", "Zustand", "Zod", "shadcn/ui", "Tailwind CSS", "Vitest"],
   },
   {
-    company: "Careamicus",
-    role: "Website Developer Intern",
-    period: "September 2021 - March 2022",
-    location: "Noida, India",
-    description: "Developed and optimized company website to expand market reach and improve customer engagement.",
+    hash: "b71e045",
+    company: "TURNS",
+    role: "Frontend Developer Intern",
+    period: "Oct 2024 – Feb 2025",
+    location: "Greater Noida, India",
     achievements: [
-      "Analyzed market opportunities and developed strategic website improvements to reach new audiences",
-      "Implemented interactive chatbots for immediate customer engagement, increasing client acquisition by 30%",
-      "Enhanced user experience with responsive design and improved site performance",
-      "Streamlined communication channels enabling faster client response times",
+      "Led end-to-end UI/UX revamp across key modules using React and TypeScript — custom theme support, user preferences, and responsive design, improving retention and visual consistency",
+      "Implemented core application logic — state management, form validation, event handling, and data flows — wiring components to live API data",
+      "Designed and shipped scalable React components: dynamic subscription modals, advanced search bars, and royalty management UI, following clean code standards and peer reviews",
     ],
-    tech: ["JavaScript", "HTML/CSS", "Chatbot Integration", "Responsive Design"],
-    gradient: "from-purple-500 to-pink-500",
+    tech: ["React", "TypeScript", "REST APIs", "UI/UX"],
   },
 ];
 
-function ExperienceCard({ experience, index }: { experience: typeof experiences[0]; index: number }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
-      animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
-      transition={{ duration: 0.8, delay: index * 0.2 }}
-      className="relative"
-    >
-      <motion.div
-        whileHover={{ scale: 1.02 }}
-        className="glass-effect rounded-3xl p-8 relative overflow-hidden group"
-      >
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileHover={{ opacity: 0.05 }}
-          transition={{ duration: 0.3 }}
-          className={`absolute inset-0 bg-gradient-to-br ${experience.gradient}`}
-        />
-
-        <div className="relative z-10">
-          <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-6">
-            <div>
-              <motion.h3
-                whileHover={{ x: 10 }}
-                className="text-3xl font-bold text-gradient mb-2"
-              >
-                {experience.company}
-              </motion.h3>
-              <motion.p
-                whileHover={{ x: 10 }}
-                transition={{ delay: 0.05 }}
-                className="text-xl text-luxury-gold font-semibold mb-3"
-              >
-                {experience.role}
-              </motion.p>
-            </div>
-          </div>
-
-          <div className="flex flex-wrap gap-4 mb-6 text-themed-light">
-            <div className="flex items-center gap-2">
-              <Calendar size={18} className="text-luxury-gold" />
-              <span>{experience.period}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <MapPin size={18} className="text-luxury-gold" />
-              <span>{experience.location}</span>
-            </div>
-          </div>
-
-          <p className="text-themed-muted mb-6 leading-relaxed">
-            {experience.description}
-          </p>
-
-          <div className="mb-6">
-            <h4 className="text-luxury-gold font-semibold mb-3 flex items-center gap-2">
-              <Briefcase size={18} />
-              Key Achievements
-            </h4>
-            <ul className="space-y-2">
-              {experience.achievements.map((achievement, idx) => (
-                <motion.li
-                  key={idx}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                  transition={{ duration: 0.5, delay: index * 0.2 + idx * 0.1 }}
-                  className="text-themed-muted pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-luxury-gold"
-                >
-                  {achievement}
-                </motion.li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="flex flex-wrap gap-2">
-            {experience.tech.map((tech) => (
-              <motion.span
-                key={tech}
-                whileHover={{ scale: 1.1 }}
-                className="px-3 py-1 bg-luxury-gold/10 text-luxury-gold rounded-full text-sm border border-luxury-gold/20"
-              >
-                {tech}
-              </motion.span>
-            ))}
-          </div>
-        </div>
-
-        <motion.div
-          className="absolute -right-20 -top-20 w-40 h-40 bg-luxury-gold/5 rounded-full blur-3xl group-hover:bg-luxury-gold/10 transition-colors duration-500"
-        />
-      </motion.div>
-
-      {index < experiences.length - 1 && (
-        <div className="flex justify-center py-8">
-          <motion.div
-            initial={{ scaleY: 0 }}
-            animate={isInView ? { scaleY: 1 } : { scaleY: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.2 + 0.5 }}
-            className="w-0.5 h-16 bg-gradient-to-b from-luxury-gold to-transparent origin-top"
-          />
-        </div>
-      )}
-    </motion.div>
-  );
-}
-
 export default function Experience() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
-    <section id="experience" className="min-h-screen py-20 px-6 relative">
-      <div className="max-w-5xl mx-auto">
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <motion.h2
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
-            transition={{ duration: 0.8 }}
-            className="text-5xl md:text-7xl font-bold text-gradient mb-6"
-          >
-            Work Experience
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl text-themed-muted max-w-2xl mx-auto"
-          >
-            Building impactful solutions and driving innovation in professional environments
-          </motion.p>
-        </motion.div>
+    <section id="experience" className="py-24 px-4 sm:px-6">
+      <div className="max-w-4xl mx-auto">
+        <SectionHeader command="git log --work --oneline" comment="where I've worked and what I shipped" />
 
-        <div className="space-y-0">
-          {experiences.map((experience, index) => (
-            <ExperienceCard key={experience.company} experience={experience} index={index} />
+        <div className="relative border-l border-term-border ml-2 sm:ml-3 space-y-12">
+          {experiences.map((exp, index) => (
+            <motion.div
+              key={exp.company}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="relative pl-8 sm:pl-10"
+            >
+              <span className="absolute -left-[5px] top-2 w-[9px] h-[9px] rounded-full bg-term-green ring-4 ring-term-bg" />
+
+              <div className="text-sm mb-2">
+                <span className="text-term-yellow">commit {exp.hash}</span>
+                <span className="text-term-muted"> ({exp.period})</span>
+              </div>
+
+              <div className="term-window">
+                <div className="px-5 py-4 border-b border-term-border flex flex-wrap items-baseline justify-between gap-2">
+                  <div>
+                    <h3 className="text-lg sm:text-xl font-bold text-term-text">{exp.company}</h3>
+                    <p className="text-term-green text-sm">{exp.role}</p>
+                  </div>
+                  <span className="text-term-muted text-xs">{exp.location}</span>
+                </div>
+
+                <ul className="px-5 py-4 space-y-2.5 text-sm text-term-muted leading-relaxed">
+                  {exp.achievements.map((achievement, idx) => (
+                    <li key={idx} className="pl-5 relative">
+                      <span className="absolute left-0 text-term-green">+</span>
+                      {achievement}
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="px-5 pb-4 flex flex-wrap gap-2">
+                  {exp.tech.map((tech) => (
+                    <span key={tech} className="term-chip">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>

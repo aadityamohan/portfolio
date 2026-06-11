@@ -10,37 +10,29 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        luxury: {
-          gold: "#D4AF37",
-          darkGold: "#B8941E",
-          dark: "#0A0A0A",
-          darker: "#050505",
-          light: "#F5F5F5",
-          lightBg: "#FAFAFA",
-          lightCard: "#FFFFFF",
+        term: {
+          bg: "rgb(var(--term-bg) / <alpha-value>)",
+          surface: "rgb(var(--term-surface) / <alpha-value>)",
+          border: "rgb(var(--term-border) / <alpha-value>)",
+          text: "rgb(var(--term-text) / <alpha-value>)",
+          muted: "rgb(var(--term-muted) / <alpha-value>)",
+          green: "rgb(var(--term-green) / <alpha-value>)",
+          blue: "rgb(var(--term-blue) / <alpha-value>)",
+          yellow: "rgb(var(--term-yellow) / <alpha-value>)",
+          red: "rgb(var(--term-red) / <alpha-value>)",
+          magenta: "rgb(var(--term-magenta) / <alpha-value>)",
         },
       },
       fontFamily: {
-        sans: ["var(--font-geist-sans)", "system-ui", "sans-serif"],
-        mono: ["var(--font-geist-mono)", "monospace"],
+        mono: ["var(--font-mono)", "ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
       },
       animation: {
-        "gradient-shift": "gradient-shift 8s ease infinite",
-        "float": "float 6s ease-in-out infinite",
-        "glow": "glow 2s ease-in-out infinite alternate",
+        blink: "blink 1.1s step-end infinite",
       },
       keyframes: {
-        "gradient-shift": {
-          "0%, 100%": { backgroundPosition: "0% 50%" },
-          "50%": { backgroundPosition: "100% 50%" },
-        },
-        "float": {
-          "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-20px)" },
-        },
-        "glow": {
-          "from": { boxShadow: "0 0 20px rgba(212, 175, 55, 0.3)" },
-          "to": { boxShadow: "0 0 40px rgba(212, 175, 55, 0.6)" },
+        blink: {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0" },
         },
       },
     },

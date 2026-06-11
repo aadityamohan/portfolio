@@ -7,17 +7,17 @@ import Skills from "@/components/Skills";
 import Experience from "@/components/Experience";
 import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
+import StatusBar from "@/components/StatusBar";
 
-const Scene3D = dynamic(() => import("@/components/Scene3D"), { ssr: false });
 const SmoothScroll = dynamic(() => import("@/components/SmoothScroll"), { ssr: false });
-const CustomCursor = dynamic(() => import("@/components/CustomCursor"), { ssr: false });
+const MatrixRain = dynamic(() => import("@/components/MatrixRain"), { ssr: false });
 
 export default function Home() {
   return (
     <SmoothScroll>
-      <main className="relative">
-        <CustomCursor />
-        <Scene3D />
+      <MatrixRain />
+      <div className="crt-overlay" aria-hidden />
+      <main className="relative pb-10">
         <Navigation />
         <Hero />
         <Skills />
@@ -25,6 +25,7 @@ export default function Home() {
         <Projects />
         <Contact />
       </main>
+      <StatusBar />
     </SmoothScroll>
   );
 }
