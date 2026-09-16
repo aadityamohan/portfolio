@@ -1,14 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import ScrambleText from "./ScrambleText";
 
 export default function SectionHeader({
-  command,
-  comment,
+  index,
+  title,
+  note,
 }: {
-  command: string;
-  comment: string;
+  index: string;
+  title: string;
+  note?: string;
 }) {
   return (
     <motion.div
@@ -16,16 +17,19 @@ export default function SectionHeader({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.5 }}
-      className="mb-12"
+      className="flex flex-wrap items-end justify-between gap-4 mb-12 pb-5 border-b-2 border-line"
     >
-      <p className="text-term-muted text-sm mb-2">
-        <span className="text-term-muted/60"># </span>
-        {comment}
-      </p>
-      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold break-words">
-        <span className="text-term-green mr-3 text-glow">$</span>
-        <ScrambleText text={command} className="text-term-text" />
-      </h2>
+      <div className="flex items-start gap-4">
+        <span className="font-heading font-black text-accent text-lg leading-none mt-2">
+          ({index})
+        </span>
+        <h2 className="font-black uppercase tracking-[-0.02em] leading-none text-[clamp(2.2rem,6vw,4.5rem)]">
+          {title}
+        </h2>
+      </div>
+      {note && (
+        <p className="text-mute text-sm uppercase tracking-[0.15em] max-w-xs">{note}</p>
+      )}
     </motion.div>
   );
 }

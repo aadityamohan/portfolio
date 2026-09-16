@@ -1,99 +1,74 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowUpRight, Asterisk, Github, Linkedin, Mail, Phone } from "lucide-react";
 import SectionHeader from "./SectionHeader";
 
-const contactInfo = [
-  {
-    icon: Mail,
-    label: "email",
-    value: "mohanaaditya@gmail.com",
-    href: "mailto:mohanaaditya@gmail.com",
-  },
-  {
-    icon: Phone,
-    label: "phone",
-    value: "+91-7011808985",
-    href: "tel:+917011808985",
-  },
-  {
-    icon: Linkedin,
-    label: "linkedin",
-    value: "in/aadityaamohan",
-    href: "https://www.linkedin.com/in/aadityaamohan/",
-  },
-  {
-    icon: Github,
-    label: "github",
-    value: "@aadityamohan",
-    href: "https://github.com/aadityamohan",
-  },
+const links = [
+  { icon: Mail, label: "mohanaaditya@gmail.com", href: "mailto:mohanaaditya@gmail.com" },
+  { icon: Phone, label: "+91-7011808985", href: "tel:+917011808985" },
+  { icon: Github, label: "github.com/aadityamohan", href: "https://github.com/aadityamohan" },
+  { icon: Linkedin, label: "in/aadityaamohan", href: "https://www.linkedin.com/in/aadityaamohan/" },
 ];
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-24 px-4 sm:px-6">
-      <div className="max-w-4xl mx-auto">
-        <SectionHeader command="ping aaditya --now" comment="open to interesting problems and good teams" />
+    <section id="contact" className="py-28 px-4 sm:px-6">
+      <div className="max-w-6xl mx-auto">
+        <SectionHeader index="04" title="Contact" note="Open to full-time roles & ambitious product work" />
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
+        <motion.a
+          href="mailto:mohanaaditya@gmail.com"
+          initial={{ opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.5 }}
-          className="term-window"
+          className="block-card block-card-hover group block p-8 sm:p-14 mb-6"
         >
-          <div className="term-chrome">
-            <span className="term-dot bg-term-red" />
-            <span className="term-dot bg-term-yellow" />
-            <span className="term-dot bg-term-green" />
-            <span className="ml-3 text-xs text-term-muted">contact.sh</span>
+          <div className="flex items-center gap-3 text-accent mb-6">
+            <Asterisk size={28} strokeWidth={2.5} />
+            <span className="text-sm font-bold uppercase tracking-[0.2em]">
+              Have a project in mind?
+            </span>
           </div>
+          <p className="font-black uppercase tracking-[-0.03em] leading-[0.95] text-[clamp(2.4rem,8vw,6.5rem)]">
+            Let&apos;s build
+            <br />
+            <span className="text-accent">something great</span>
+            <ArrowUpRight className="inline-block ml-3 w-[clamp(2rem,6vw,5rem)] h-[clamp(2rem,6vw,5rem)] text-mute group-hover:text-accent group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-200" />
+          </p>
+        </motion.a>
 
-          <div className="p-5 sm:p-6">
-            <div className="grid sm:grid-cols-2 gap-3">
-              {contactInfo.map((info) => (
-                <a
-                  key={info.label}
-                  href={info.href}
-                  target={info.href.startsWith("http") ? "_blank" : undefined}
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 px-4 py-3 border border-term-border rounded bg-term-bg/50 hover:border-term-green/50 transition-colors group"
-                >
-                  <info.icon size={16} className="text-term-green shrink-0" />
-                  <div className="text-sm min-w-0">
-                    <span className="text-term-muted">{info.label}: </span>
-                    <span className="text-term-text group-hover:text-term-green transition-colors break-all">
-                      {info.value}
-                    </span>
-                  </div>
-                </a>
-              ))}
-            </div>
-
-            <p className="mt-5 text-sm text-term-muted flex items-center gap-2">
-              <MapPin size={14} className="text-term-green" />
-              Greater Noida, India
-            </p>
-          </div>
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-16"
+        >
+          {links.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              target={link.href.startsWith("http") ? "_blank" : undefined}
+              rel="noopener noreferrer"
+              className="block-card block-card-hover group flex items-center gap-3 px-4 py-4"
+            >
+              <link.icon size={16} className="text-accent shrink-0" />
+              <span className="text-sm text-mute group-hover:text-fg transition-colors duration-200 break-all">
+                {link.label}
+              </span>
+            </a>
+          ))}
         </motion.div>
 
-        <motion.footer
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-16 text-center text-sm text-term-muted space-y-1"
-        >
+        <footer className="pt-6 border-t-2 border-line flex flex-col sm:flex-row items-center justify-between gap-3 text-xs uppercase tracking-wide text-mute">
+          <p>© 2026 Aaditya Mohan</p>
+          <p>Greater Noida, India — Open to remote</p>
           <p>
-            <span className="text-term-green">$</span> exit
+            Next.js + Tailwind <span className="text-accent">/</span> Netlify
           </p>
-          <p>
-            © 2026 Aaditya Mohan — process exited with code{" "}
-            <span className="text-term-green">0</span>
-          </p>
-        </motion.footer>
+        </footer>
       </div>
     </section>
   );

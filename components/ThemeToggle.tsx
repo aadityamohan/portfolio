@@ -9,11 +9,10 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="flex items-center gap-1.5 px-2 py-1 border border-term-border rounded text-term-muted hover:text-term-yellow hover:border-term-yellow/50 transition-colors text-xs"
+      className="w-9 h-9 flex items-center justify-center border-2 border-line text-mute hover:text-accent hover:border-accent transition-colors duration-200 cursor-pointer"
       aria-label="Toggle theme"
     >
-      {theme === "dark" ? <Moon size={14} /> : <Sun size={14} />}
-      <span className="hidden sm:inline">{theme === "dark" ? "dark" : "light"}</span>
+      {theme === "dark" ? <Moon size={16} /> : <Sun size={16} />}
     </button>
   );
 }

@@ -6,10 +6,10 @@ import { useState } from "react";
 import ThemeToggle from "./ThemeToggle";
 
 const navItems = [
-  { name: "skills", href: "#skills" },
-  { name: "experience", href: "#experience" },
-  { name: "projects", href: "#projects" },
-  { name: "contact", href: "#contact" },
+  { name: "Work", href: "#work" },
+  { name: "Experience", href: "#experience" },
+  { name: "Skills", href: "#skills" },
+  { name: "Contact", href: "#contact" },
 ];
 
 export default function Navigation() {
@@ -17,42 +17,48 @@ export default function Navigation() {
 
   return (
     <motion.nav
-      initial={{ y: -60, opacity: 0 }}
+      initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className="fixed top-0 left-0 right-0 z-50 border-b border-term-border bg-term-bg/85 backdrop-blur-md"
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="fixed top-4 left-4 right-4 z-50"
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between text-sm">
-        <a href="#home" className="flex items-center gap-1 whitespace-nowrap">
-          <span className="text-term-green font-semibold">aaditya</span>
-          <span className="text-term-muted">@</span>
-          <span className="text-term-blue font-semibold">portfolio</span>
-          <span className="text-term-muted">:~$</span>
-          <span className="term-cursor ml-1" />
+      <div className="max-w-6xl mx-auto block-card bg-ink/90 backdrop-blur-md flex items-center justify-between pl-4 pr-3 py-2.5">
+        <a href="#home" className="flex items-center gap-3 cursor-pointer group">
+          <span className="w-9 h-9 bg-accent text-accent-fg font-heading font-black flex items-center justify-center text-sm">
+            AM
+          </span>
+          <span className="font-heading font-bold uppercase tracking-wide text-sm hidden sm:block group-hover:text-accent transition-colors duration-200">
+            Aaditya Mohan
+          </span>
         </a>
 
-        <div className="hidden md:flex items-center gap-6">
+        <div className="hidden md:flex items-center gap-1">
           {navItems.map((item) => (
             <a
               key={item.name}
               href={item.href}
-              className="text-term-muted hover:text-term-green transition-colors"
+              className="px-4 py-2 text-sm font-medium uppercase tracking-wide text-mute hover:text-accent transition-colors duration-200 cursor-pointer"
             >
-              <span className="text-term-green/60">./</span>
               {item.name}
             </a>
           ))}
-          <ThemeToggle />
         </div>
 
-        <div className="md:hidden flex items-center gap-3">
+        <div className="hidden md:flex items-center gap-2">
+          <ThemeToggle />
+          <a href="mailto:mohanaaditya@gmail.com" className="btn-block !px-4 !py-2">
+            Hire me
+          </a>
+        </div>
+
+        <div className="md:hidden flex items-center gap-2">
           <ThemeToggle />
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="text-term-muted hover:text-term-green transition-colors p-1"
+            className="w-9 h-9 flex items-center justify-center border-2 border-line text-fg hover:border-accent hover:text-accent transition-colors duration-200 cursor-pointer"
             aria-label="Toggle menu"
           >
-            {isOpen ? <X size={20} /> : <Menu size={20} />}
+            {isOpen ? <X size={18} /> : <Menu size={18} />}
           </button>
         </div>
       </div>
@@ -60,23 +66,30 @@ export default function Navigation() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-t border-term-border overflow-hidden"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden max-w-6xl mx-auto mt-2 block-card bg-ink/95 backdrop-blur-md p-3"
           >
-            <div className="px-6 py-4 flex flex-col gap-3 text-sm">
+            <div className="flex flex-col gap-1">
               {navItems.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
                   onClick={() => setIsOpen(false)}
-                  className="text-term-muted hover:text-term-green transition-colors"
+                  className="px-3 py-2.5 text-sm font-medium uppercase tracking-wide text-mute hover:text-accent transition-colors duration-200 cursor-pointer"
                 >
-                  <span className="text-term-green/60">./</span>
                   {item.name}
                 </a>
               ))}
+              <a
+                href="mailto:mohanaaditya@gmail.com"
+                onClick={() => setIsOpen(false)}
+                className="btn-block mt-2"
+              >
+                Hire me
+              </a>
             </div>
           </motion.div>
         )}

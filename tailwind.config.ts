@@ -10,30 +10,17 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        term: {
-          bg: "rgb(var(--term-bg) / <alpha-value>)",
-          surface: "rgb(var(--term-surface) / <alpha-value>)",
-          border: "rgb(var(--term-border) / <alpha-value>)",
-          text: "rgb(var(--term-text) / <alpha-value>)",
-          muted: "rgb(var(--term-muted) / <alpha-value>)",
-          green: "rgb(var(--term-green) / <alpha-value>)",
-          blue: "rgb(var(--term-blue) / <alpha-value>)",
-          yellow: "rgb(var(--term-yellow) / <alpha-value>)",
-          red: "rgb(var(--term-red) / <alpha-value>)",
-          magenta: "rgb(var(--term-magenta) / <alpha-value>)",
-        },
+        ink: "rgb(var(--ink) / <alpha-value>)",       /* page background */
+        surface: "rgb(var(--surface) / <alpha-value>)",
+        line: "rgb(var(--line) / <alpha-value>)",
+        fg: "rgb(var(--fg) / <alpha-value>)",
+        mute: "rgb(var(--mute) / <alpha-value>)",
+        accent: "rgb(var(--accent) / <alpha-value>)",
+        "accent-fg": "rgb(var(--accent-fg) / <alpha-value>)",
       },
       fontFamily: {
-        mono: ["var(--font-mono)", "ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
-      },
-      animation: {
-        blink: "blink 1.1s step-end infinite",
-      },
-      keyframes: {
-        blink: {
-          "0%, 100%": { opacity: "1" },
-          "50%": { opacity: "0" },
-        },
+        heading: ["var(--font-heading)", "system-ui", "sans-serif"],
+        body: ["var(--font-body)", "system-ui", "sans-serif"],
       },
     },
   },

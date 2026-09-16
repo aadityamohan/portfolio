@@ -1,138 +1,124 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ExternalLink } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import SectionHeader from "./SectionHeader";
 
 const projects = [
   {
-    dir: "splitter/",
-    title: "Splitter — Group Expense Manager",
+    index: "01",
+    title: "Splitter",
+    tagline: "Group Expense Manager",
     description:
-      "Full-stack expense splitter with real-time sync (Firestore onSnapshot), multi-provider auth (Google, Phone OTP, Email/Password), and push notifications via Cloud Functions + FCM.",
-    highlights: [
-      "Privacy-first Firestore security rules enforcing group-scoped access via a per-user membership index — O(1) exists() rule-evaluation reads",
-      "Mobile-installable PWA with settlement tracking, itemized balance breakdowns, and dark mode",
-      "One-click recruiter demo login seeded with sample data",
-    ],
-    tech: ["React", "TypeScript", "Firebase", "Zustand", "PWA", "React Native (Expo)"],
+      "Full-stack expense splitter with real-time Firestore sync, multi-provider auth (Google, Phone OTP, Email), and FCM push notifications. Privacy-first security rules with O(1) membership checks.",
+    tech: ["React", "TypeScript", "Firebase", "Zustand", "PWA", "Expo"],
     demo: "https://splitter-fd759.web.app/?test",
     note: null,
   },
   {
-    dir: "railbuild-pro/",
-    title: "RailBuild Pro — Railway Construction Management PWA",
+    index: "02",
+    title: "RailBuild Pro",
+    tagline: "Construction Management PWA",
     description:
-      "Offline-capable PWA with multi-role auth (Admin / Manager / Worker), invite-code onboarding, and Firestore security rules enforcing role-based access scoped per company.",
-    highlights: [
-      "Real-time data sync via Firestore onSnapshot across 10+ modules",
-      "Dashboard KPIs, Tasks, Crew, Equipment, Inventory, Safety Incidents, Payments, and Audit Logs",
-    ],
-    tech: ["React 18", "TypeScript", "Firebase", "Tailwind CSS", "Zustand", "Vite PWA"],
+      "Offline-capable PWA with multi-role auth (Admin / Manager / Worker), invite-code onboarding, and real-time sync across 10+ modules — KPIs, tasks, crew, inventory, safety, payments, audit logs.",
+    tech: ["React 18", "TypeScript", "Firebase", "Tailwind", "Vite PWA"],
     demo: "https://railwaypro-17927.web.app/",
-    note: "demo (password: Demo1234!): admin@demo.test · manager@demo.test · worker@demo.test",
+    note: "Demo (password: Demo1234!): admin@demo.test · manager@demo.test · worker@demo.test",
   },
   {
-    dir: "whatsapp-sender/",
-    title: "WhatsApp Bulk Messaging Desktop App",
+    index: "03",
+    title: "WhatsApp Bulk Sender",
+    tagline: "Cross-Platform Desktop App",
     description:
-      "Cross-platform desktop app for automated WhatsApp messaging — 95% delivery success rate, 100+ concurrent requests, supporting Windows, macOS, and Linux.",
-    highlights: [
-      "JWT-secured REST API with QR-based WhatsApp Web auth and session persistence",
-      "MongoDB (Mongoose ODM) with validated CSV import/export — 90% less manual data entry, 40% faster sends",
-    ],
-    tech: ["Node.js", "React", "Baileys API", "Express.js", "MongoDB"],
+      "Automated WhatsApp messaging at 95% delivery success with 100+ concurrent requests. JWT-secured REST API, QR-based auth, and validated CSV import/export cutting manual entry by 90%.",
+    tech: ["Node.js", "React", "Baileys API", "Express", "MongoDB"],
     demo: "https://whatsapp-sender-production-a440.up.railway.app/",
     note: null,
   },
   {
-    dir: "ecommerce-store/",
+    index: "04",
     title: "E-Commerce Store",
+    tagline: "JAMstack Storefront",
     description:
-      "Full-stack e-commerce platform with real-time inventory management, secure payment processing, and seamless user authentication, built on a JAMstack architecture.",
-    highlights: [
-      "Sanity CMS for headless content management",
-      "Stripe payment gateway with secure checkout flow",
-      "Auth0 authentication with social login support",
-    ],
-    tech: ["React", "Next.js", "Sanity CMS", "Stripe", "Auth0", "MongoDB"],
+      "Full-stack e-commerce platform with real-time inventory, Stripe checkout, Auth0 social login, and headless content via Sanity CMS.",
+    tech: ["Next.js", "Sanity CMS", "Stripe", "Auth0", "MongoDB"],
     demo: null,
     note: null,
   },
 ];
 
-function ProjectCard({ project, index }: { project: (typeof projects)[0]; index: number }) {
+function ProjectCard({ project, i }: { project: (typeof projects)[0]; i: number }) {
+  const Wrapper = project.demo ? "a" : "div";
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.5, delay: (index % 2) * 0.1 }}
-      className="term-window flex flex-col group"
+      transition={{ duration: 0.5, delay: (i % 2) * 0.1 }}
+      className="h-full"
     >
-      <div className="term-chrome">
-        <span className="term-dot bg-term-red" />
-        <span className="term-dot bg-term-yellow" />
-        <span className="term-dot bg-term-green" />
-        <span className="ml-3 text-xs text-term-muted truncate">~/projects/{project.dir}</span>
-      </div>
+      <Wrapper
+        {...(project.demo
+          ? { href: project.demo, target: "_blank", rel: "noopener noreferrer" }
+          : {})}
+        className={`block-card group flex flex-col h-full p-6 sm:p-8 ${
+          project.demo ? "block-card-hover" : ""
+        }`}
+      >
+        <div className="flex items-start justify-between mb-6">
+          <span className="font-heading font-black text-accent text-lg">
+            ({project.index})
+          </span>
+          {project.demo ? (
+            <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-accent">
+              <span className="w-2 h-2 bg-accent" /> Live
+              <ArrowUpRight
+                size={16}
+                className="text-mute group-hover:text-accent transition-colors duration-200"
+              />
+            </span>
+          ) : (
+            <span className="text-xs font-bold uppercase tracking-wide text-mute">
+              Case study
+            </span>
+          )}
+        </div>
 
-      <div className="p-5 flex flex-col flex-1">
-        <h3 className="text-lg font-bold text-term-text mb-3 group-hover:text-term-green transition-colors">
+        <h3 className="font-black uppercase tracking-[-0.02em] text-3xl sm:text-4xl mb-1 group-hover:text-accent transition-colors duration-200">
           {project.title}
         </h3>
+        <p className="font-heading font-bold uppercase tracking-wide text-sm text-mute mb-5">
+          / {project.tagline}
+        </p>
 
-        <p className="text-sm text-term-muted leading-relaxed mb-4">{project.description}</p>
+        <p className="text-mute leading-relaxed text-sm mb-6">{project.description}</p>
 
-        <ul className="space-y-2 text-sm text-term-muted mb-5">
-          {project.highlights.map((highlight, idx) => (
-            <li key={idx} className="pl-5 relative">
-              <span className="absolute left-0 text-term-green">&gt;</span>
-              {highlight}
-            </li>
-          ))}
-        </ul>
-
-        <div className="flex flex-wrap gap-2 mb-5 mt-auto">
+        <div className="flex flex-wrap gap-2 mt-auto">
           {project.tech.map((tech) => (
-            <span key={tech} className="term-chip">
+            <span key={tech} className="tag">
               {tech}
             </span>
           ))}
         </div>
 
-        {project.demo && (
-          <a
-            href={project.demo}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm text-term-blue hover:text-term-green transition-colors w-fit"
-          >
-            <span className="text-term-green">$</span> open --live-demo
-            <ExternalLink size={14} />
-          </a>
-        )}
-
         {project.note && (
-          <p className="mt-3 text-xs text-term-yellow/90 leading-relaxed">
-            <span className="text-term-muted"># </span>
+          <p className="mt-4 text-xs text-mute/80 leading-relaxed border-t-2 border-line pt-3">
             {project.note}
           </p>
         )}
-      </div>
+      </Wrapper>
     </motion.div>
   );
 }
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-24 px-4 sm:px-6">
+    <section id="work" className="py-28 px-4 sm:px-6">
       <div className="max-w-6xl mx-auto">
-        <SectionHeader command="ls -la ~/projects" comment="things I've built and shipped" />
-
-        <div className="grid md:grid-cols-2 gap-5">
-          {projects.map((project, index) => (
-            <ProjectCard key={project.dir} project={project} index={index} />
+        <SectionHeader index="01" title="Selected Work" note="Real products, deployed and used — not just repos" />
+        <div className="grid md:grid-cols-2 gap-6">
+          {projects.map((project, i) => (
+            <ProjectCard key={project.title} project={project} i={i} />
           ))}
         </div>
       </div>

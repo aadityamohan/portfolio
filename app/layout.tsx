@@ -1,17 +1,24 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono } from "next/font/google";
+import { Archivo, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/lib/ThemeContext";
 
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-mono",
+const archivo = Archivo({
+  variable: "--font-heading",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+});
+
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-body",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
   title: "Aaditya Mohan — Software Engineer",
   description:
-    "Frontend-focused software engineer (SDE-1 @ PayRange) building production-grade web apps with React, TypeScript, and Firebase.",
+    "Software engineer (SDE-1 @ PayRange) building production-grade web products with React, TypeScript, and Firebase.",
   icons: {
     icon: "/favicon.ico",
   },
@@ -31,7 +38,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={jetbrainsMono.variable} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${archivo.variable} ${spaceGrotesk.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
