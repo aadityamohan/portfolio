@@ -6,6 +6,20 @@ import SectionHeader from "./SectionHeader";
 
 const projects = [
   {
+    dir: "docsagent/",
+    title: "DocsAgent — RAG Support Assistant",
+    description:
+      "Production RAG assistant answering strictly from uploaded docs with citations and per-request token/latency/cost telemetry, built with Claude, Voyage (embeddings + reranking), and Pinecone.",
+    highlights: [
+      "Two-stage retrieval (vector search + cross-encoder reranker) with a hallucination guardrail that short-circuits before the LLM on irrelevant queries — ~34× cheaper per guardrailed query",
+      "Raised retrieval hit rate 83% → 100% via a 20-question eval harness (hit-rate + LLM-as-judge); 9/9 end-to-end tests passing against production",
+      "Per-session multi-tenancy, digital-PDF ingestion, Zod-validated output, and prompt-injection defenses",
+    ],
+    tech: ["React", "TypeScript", "Vite", "Node.js", "Express", "Claude API", "Voyage", "Pinecone"],
+    demo: "https://docsagent.vercel.app",
+    note: "code: https://github.com/aadityamohan/docsagent · API health: https://docsagent-api.onrender.com/health",
+  },
+  {
     dir: "splitter/",
     title: "Splitter — Group Expense Manager",
     description:
